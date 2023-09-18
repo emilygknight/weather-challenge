@@ -31,7 +31,7 @@ var formSubmitHandler = function (event) {
 // };
 
 var getUserCity = function (user) {
-  var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=97.7431&lon=30.2672&appid=0d9571e1b0c1a878cfe2800320169226';
+  var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Austin&appid=0d9571e1b0c1a878cfe2800320169226';
 
   fetch(apiUrl)
     .then(function (response) {
@@ -51,8 +51,7 @@ var getUserCity = function (user) {
 };
 
 var getFeaturedCity = function (language) {
-  var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=97.7431&lon=30.2672&appid=0d9571e1b0c1a878cfe2800320169226';
-
+  var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Austin&appid=0d9571e1b0c1a878cfe2800320169226';
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
