@@ -1,9 +1,47 @@
-<nav class="navbar bg-body-tertiary">
-    <div class="container-fluid">
-      <a class="navbar-brand">Location</a>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-      </form>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
+  <link rel="stylesheet" href="./assets/style.css" />
+  <title>Weather</title>
+</head>
+
+<body class="flex-column min-100-vh">
+  <header class="hero">
+    <h1 class="app-title">Weather</h1>
+    <p>Search for City</p>
+  </header>
+
+
+  <main class="flex-row justify-space-between">
+    <div class="col-12 col-md-4">
+
+      <div class="card">
+        <h3 class="card-header text-uppercase">Search By Location</h3>
+        <form id="user-form" class="card-body">
+          <label class="form-label" for="username">City</label>
+          <input name="username" id="username" type="text" autofocus="true" class="form-input" />
+          <button type="submit" class="btn">Submit</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3 class="card-header text-uppercase">City</h3>
+      </div>
     </div>
-  </nav>
+
+    <div class="col-12 col-md-8">
+      <h2 class="subtitle">Showing Weather for: <span id="repo-search-term"></span></h2>
+      <div id="repos-container" class="list-group"></div>
+    </div>
+  </main>
+
+  <script src="./assets/js/homepage.js"></script>
+</body>
+
+</html>
