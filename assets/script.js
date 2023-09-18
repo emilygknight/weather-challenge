@@ -1,35 +1,37 @@
 var userFormEl = document.querySelector('#user-form');
-var nameInputEl = document.querySelector('#city');
-var repoContainerEl = document.querySelector('#weather-container');
-var repoSearchTerm = document.querySelector('#repo-search-term');
+var cityInputEl = document.querySelector('#city');
+var weatherContainerEl = document.querySelector('#weather-container');
+var citySearchTerm = document.querySelector('#city-search-term');
+var APIKey = "0d9571e1b0c1a878cfe2800320169226";
+
 
 var formSubmitHandler = function (event) {
   event.preventDefault();
 
-  var username = nameInputEl.value.trim();
+  var username = cityInputEl.value.trim();
 
   if (username) {
-    getUserRepos(username);
+    getUserCity(username);
 
-    repoContainerEl.textContent = '';
-    nameInputEl.value = '';
+    weatherContainerEl.textContent = '';
+    cityInputEl.value = '';
   } else {
     alert('Please enter a City');
   }
 };
 
-var buttonClickHandler = function (event) {
-  var language = event.target.getAttribute('data-language');
+// var buttonClickHandler = function (event) {
+//   var language = event.target.getAttribute('data-language');
 
-  if (language) {
-    getFeaturedRepos(language);
+//   if (language) {
+//     getFeaturedCity(language);
 
-    repoContainerEl.textContent = '';
-  }
-};
+//     cityContainerEl.textContent = '';
+//   }
+// };
 
-var getUserRepos = function (user) {
-  var apiUrl = '0d9571e1b0c1a878cfe2800320169226';
+var getUserCity = function (user) {
+  var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=97.7431&lon=30.2672&appid=0d9571e1b0c1a878cfe2800320169226';
 
   fetch(apiUrl)
     .then(function (response) {
@@ -37,7 +39,7 @@ var getUserRepos = function (user) {
         console.log(response);
         response.json().then(function (data) {
           console.log(data);
-          displayRepos(data, user);
+          displayCity(data, user);
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -48,13 +50,13 @@ var getUserRepos = function (user) {
     });
 };
 
-var getFeaturedRepos = function (language) {
-  var apiUrl = 'https://api.github.com/search/repositories?q=' + language + '+is:featured&sort=help-wanted-issues';
+var getFeaturedCity = function (language) {
+  var apiUrl = 'https://api.openweathermap.org/data/2.5/forecast?lat=97.7431&lon=30.2672&appid=0d9571e1b0c1a878cfe2800320169226';
 
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        displayRepos(data.items, language);
+        displayCity(data.items, language);
       });
     } else {
       alert('Error: ' + response.statusText);
@@ -62,41 +64,40 @@ var getFeaturedRepos = function (language) {
   });
 };
 
-var displayRepos = function (repos, searchTerm) {
-  if (repos.length === 0) {
-    repoContainerEl.textContent = 'No repositories found.';
+var displayCity = function (repos, searchTerm) {
+  if (city.length === 0) {
+    cityContainerEl.textContent = 'City not found.';
     return;
   }
 
-  repoSearchTerm.textContent = searchTerm;
+  citySearchTerm.textContent = searchTerm;
 
-  for (var i = 0; i < repos.length; i++) {
-    var repoName = repos[i].owner.login + '/' + repos[i].name;
+  for (var i = 0; i < city.length; i++) {
+    var cityName = city[i].owner.login + '/' + city[i].name;
 
-    var repoEl = document.createElement('a');
-    repoEl.classList = 'list-item flex-row justify-space-between align-center';
-    repoEl.setAttribute('href', './single-repo.html?repo=' + repoName);
+    var cityEl = document.createElement('a');
+    cityEl.classList = 'list-item flex-row justify-space-between align-center';
+    cityEl.setAttribute('href', './single-repo.html?repo=' + cityName);
 
     var titleEl = document.createElement('span');
-    titleEl.textContent = repoName;
+    titleEl.textContent = cityName;
 
-    repoEl.appendChild(titleEl);
+    cityEl.appendChild(titleEl);
 
     var statusEl = document.createElement('span');
     statusEl.classList = 'flex-row align-center';
 
-    if (repos[i].open_issues_count > 0) {
+    if (city[i].open_issues_count > 0) {
       statusEl.innerHTML =
-        "<i class='fas fa-times status-icon icon-danger'></i>" + repos[i].open_issues_count + ' issue(s)';
+        "<i class='fas fa-times status-icon icon-danger'></i>" + city[i].open_issues_count + ' issue(s)';
     } else {
       statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
     }
 
-    repoEl.appendChild(statusEl);
+    cityEl.appendChild(statusEl);
 
-    repoContainerEl.appendChild(repoEl);
+    cityContainerEl.appendChild(cityEl);
   }
 };
 
 userFormEl.addEventListener('submit', formSubmitHandler);
-languageButtonsEl.addEventListener('click', buttonClickHandler);
