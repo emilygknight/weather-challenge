@@ -30,8 +30,8 @@ var formSubmitHandler = function (event) {
 //   }
 // };
 
-var getUserCity = function (user) {
-  var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Austin&appid=0d9571e1b0c1a878cfe2800320169226';
+var getUserCity = function (city) {
+  var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + APIKey;
 
   fetch(apiUrl)
     .then(function (response) {
@@ -39,7 +39,7 @@ var getUserCity = function (user) {
         console.log(response);
         response.json().then(function (data) {
           console.log(data);
-          displayCity(data, user);
+          displayCity(data, city);
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -48,10 +48,11 @@ var getUserCity = function (user) {
     .catch(function (error) {
       alert('Unable to connect to the Weather');
     });
+    console.log(city);
 };
 
 var getFeaturedCity = function (language) {
-  var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Austin&appid=0d9571e1b0c1a878cfe2800320169226';
+  var apiUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + APIKey;
   fetch(apiUrl).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
@@ -63,40 +64,40 @@ var getFeaturedCity = function (language) {
   });
 };
 
-var displayCity = function (repos, searchTerm) {
-  if (city.length === 0) {
-    cityContainerEl.textContent = 'City not found.';
-    return;
-  }
+// var displayCity = function (city, searchTerm) {
+//   if (city.length === 0) {
+//     cityContainerEl.textContent = 'City not found.';
+//     return;
+//   }
 
-  citySearchTerm.textContent = searchTerm;
+//   citySearchTerm.textContent = searchTerm;
 
-  for (var i = 0; i < city.length; i++) {
-    var cityName = city[i].owner.login + '/' + city[i].name;
+//   for (var i = 0; i < city.length; i++) {
+//     var cityName = city[i].owner.login + '/' + city[i].name;
 
-    var cityEl = document.createElement('a');
-    cityEl.classList = 'list-item flex-row justify-space-between align-center';
-    cityEl.setAttribute('href', './single-repo.html?repo=' + cityName);
+//     var cityEl = document.createElement('a');
+//     cityEl.classList = 'list-item flex-row justify-space-between align-center';
+//     cityEl.setAttribute('href', './single-repo.html?repo=' + cityName);
 
-    var titleEl = document.createElement('span');
-    titleEl.textContent = cityName;
+//     var titleEl = document.createElement('span');
+//     titleEl.textContent = cityName;
 
-    cityEl.appendChild(titleEl);
+//     cityEl.appendChild(titleEl);
 
-    var statusEl = document.createElement('span');
-    statusEl.classList = 'flex-row align-center';
+//     var statusEl = document.createElement('span');
+//     statusEl.classList = 'flex-row align-center';
 
-    if (city[i].open_issues_count > 0) {
-      statusEl.innerHTML =
-        "<i class='fas fa-times status-icon icon-danger'></i>" + city[i].open_issues_count + ' issue(s)';
-    } else {
-      statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
-    }
+//     if (city[i].open_issues_count > 0) {
+//       statusEl.innerHTML =
+//         "<i class='fas fa-times status-icon icon-danger'></i>" + city[i].open_issues_count + ' issue(s)';
+//     } else {
+//       statusEl.innerHTML = "<i class='fas fa-check-square status-icon icon-success'></i>";
+//     }
 
-    cityEl.appendChild(statusEl);
+//     cityEl.appendChild(statusEl);
 
-    cityContainerEl.appendChild(cityEl);
-  }
-};
+//     cityContainerEl.appendChild(cityEl);
+//   }
+// };
 
 userFormEl.addEventListener('submit', formSubmitHandler);
