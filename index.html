@@ -18,21 +18,30 @@
   </header>
 
 
+
   <main class="flex-row justify-space-between">
+    <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d304.52107673255756!2d-97.74119202402814!3d30.286582339128955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b577df4246bd%3A0xb7177c1de304f7f6!2sTexas%20Union!5e0!3m2!1sen!2ssg!4v1694692207215!5m2!1sen!2ssg"
+    class="w-full" style="border:0;" allowfullscreen="" loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
     <div class="col-12 col-md-4">
 
       <div class="card">
         <h3 class="card-header text-uppercase">Search By Location</h3>
         <form id="user-form" class="card-body">
-          <label class="form-label" for="username">City</label>
-          <input name="username" id="city" type="text" autofocus="true" class="form-input" />
+          <label class="form-label">City:</label>
+          <input id="city" type="text" autofocus="true" class="form-input" />
           <button type="submit" class="btn">Submit</button>
         </form>
       </div>
 
       <div class="card">
-        <h3 class="card-header text-uppercase">City</h3>
-        <div>Results</div>
+        <div class="flex-col w-3/4">
+                <div class="text-left">
+                    <p class="mb-5">This is the 5-day bar forecast for City</p>
+                </div>
       </div>
     </div>
 
