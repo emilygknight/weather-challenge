@@ -46,9 +46,10 @@ var getUserCity = function (city) {
   })
 };
 
-// var displayForcast = function (lat, lon) {
-//   fetch('https://api.openweathermap.org/data/2.5/forecast?' + lat,{lat}&lon,{lon} + '&appid=' + APIKey)
-// };
+var displayForcast = function (lat, lon) {
+  fetch('api.openweathermap.org/data/2.5/forecast?' + lat + lon + '&appid=' + APIKey)
+  console.log(lat, lon);
+};
 
 
 var displayCurrentWeather = function (data, city) {

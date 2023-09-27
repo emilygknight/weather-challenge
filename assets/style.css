@@ -3,5 +3,5 @@
 }
 
 .card {
-    display: block;
+    display: flex;
 }
