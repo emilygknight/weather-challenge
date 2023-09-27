@@ -33,22 +33,33 @@ var getUserCity = function (city) {
   .then (function (data) {
     const lat = data.coord.lat;
     const lon = data.coord.lon;
-    // console.log('lat', lat);
-    // console.log('long', lon);
+    console.log('lat', lat);
+    console.log('long', lon);
     displayCurrentWeather(data, city);
     // displayForcast(lat, lon);
-    // console.log(data.weather);
-    // console.log(data);
-    // return data;
+    return data;
   })
   .catch(function (error) {
     console.error(error);
   })
 };
 
-var displayForcast = function (lat, lon) {
-  fetch('api.openweathermap.org/data/2.5/forecast?' + lat + lon + '&appid=' + APIKey)
-  console.log(lat, lon);
+
+var get5DayForcast = function (lat, lon) {
+  fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + APIKey)
+  .then( function (response) {
+     return response.json();
+  })
+  .then (function (data) {
+    console.log(data);
+    for (let i = 0; i < data.list.length; i++) {
+      const forecast = data.list[i];
+      const dateTime = forecast.dt_txt;
+      const temperature = forecast.main.temp;
+      console.log(`Date/Time: ${dateTime}`);
+      console.log(`Temperature: ${temperature}`);
+    }
+  });
 };
 
 
@@ -60,7 +71,7 @@ var displayCurrentWeather = function (data, city) {
   var currentDay = dayjs.unix(data.dt).format("MM/DD/YYYY");
   console.log(currentDay);
 
-  citySearchTerm.textContent = city + currentDay;
+  citySearchTerm.textContent = city + " " + currentDay;
 
   var tempEl = document.createElement('p');
   tempEl.textContent = "temp: " + data.main.temp;
