@@ -36,7 +36,7 @@ var getUserCity = function (city) {
     // console.log('lat', lat);
     // console.log('long', lon);
     displayCurrentWeather(data, city);
-    displayForcast(lat, lon);
+    // displayForcast(lat, lon);
     // console.log(data.weather);
     // console.log(data);
     // return data;
@@ -46,9 +46,9 @@ var getUserCity = function (city) {
   })
 };
 
-var displayForcast = function (lat, lon) {
-  fetch('api.openweathermap.org/data/2.5/forecast?' lat={lat}&lon={lon} '&appid=' + APIKey)
-}
+// var displayForcast = function (lat, lon) {
+//   fetch('https://api.openweathermap.org/data/2.5/forecast?' + lat,{lat}&lon,{lon} + '&appid=' + APIKey)
+// };
 
 
 var displayCurrentWeather = function (data, city) {
