@@ -5,6 +5,7 @@ var citySearchTerm = document.querySelector('#city-search-term');
 // const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 const APIKey = "0d9571e1b0c1a878cfe2800320169226";
 const city = '';
+const fivedayforecast = document.getElementById('5dayforecast');
 // dayjs.extend(window.dayjs_plugin_utc);
 // dayjs.extend(window.dayjs_plugin_timezone);
 
@@ -33,43 +34,24 @@ var getUserCity = function (city) {
   .then (function (data) {
     const lat = data.coord.lat;
     const lon = data.coord.lon;
-    console.log('lat', lat);
-    console.log('long', lon);
+    // console.log('lat', lat);
+    // console.log('long', lon);
     displayCurrentWeather(data, city);
-    // displayForcast(lat, lon);
-    return data;
+    get5DayForcast(lat, lon);
+    // return data;
   })
   .catch(function (error) {
     console.error(error);
   })
 };
 
-
-var get5DayForcast = function (lat, lon) {
-  fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + APIKey)
-  .then( function (response) {
-     return response.json();
-  })
-  .then (function (data) {
-    console.log(data);
-    for (let i = 0; i < data.list.length; i++) {
-      const forecast = data.list[i];
-      const dateTime = forecast.dt_txt;
-      const temperature = forecast.main.temp;
-      console.log(`Date/Time: ${dateTime}`);
-      console.log(`Temperature: ${temperature}`);
-    }
-  });
-};
-
-
 var displayCurrentWeather = function (data, city) {
-  console.log(city);
-  console.log(data);
-  console.log(data.main.temp);
+  // console.log(city);
+  // console.log(data);
+  // console.log(data.main.temp);
 
   var currentDay = dayjs.unix(data.dt).format("MM/DD/YYYY");
-  console.log(currentDay);
+  // console.log(currentDay);
 
   citySearchTerm.textContent = city + " " + currentDay;
 
@@ -83,17 +65,51 @@ var displayCurrentWeather = function (data, city) {
 
   var humidityEl = document.createElement('p');
   humidityEl.textContent = "humidity: " + data.main.humidity  + " %";
-  weatherContainer.appendChild(humidityEl);
-    // cityName = document.createElement('a');
-    // cityName.classList = 'list-item flex-column justify-space-between align-center';
-    // cityName.setAttribute('href', 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + APIKey);
-
-    // var titleEl = document.createElement('span');
-    // titleEl.textContent = "Click here for Weather";
-
-    // cityName.appendChild(titleEl);
-    // weatherContainer.appendChild(cityName);
-    
+  weatherContainer.appendChild(humidityEl);    
   };
+
+
+
+   var get5DayForcast = function(lat, lon) {
+    fetch('https://api.openweathermap.org/data/2.5/forecast?lat=' + lat + '&lon=' + lon + '&appid=' + APIKey + '&units=imperial')
+    .then( function (response) {
+      return response.json();
+    })
+    .then (function (data) {
+      console.log(data);
+      for (let i = 7; i < data.list.length; i+=8) {
+        console.log(data.list[i]);
+        const forecast = data.list[i];
+        const dateTime = dayjs.unix(data.list[i].dt).format("MM/DD/YYYY");
+        const temperature = forecast.main.temp;
+        const windSpeed = data.list[i].wind.speed;
+        const humidity = data.list[i].main.humidity;
+        console.log(humidity);
+        // console.log('Date/Time:', dateTime);
+        // console.log('Temperature:', temperature);
+        const container = document.createElement('div');
+        const dayEl = document.createElement('p');
+        dayEl.textContent = "date: " + dateTime;
+        const tempEl = document.createElement('p');
+        tempEl.textContent = temperature;
+        const windEl = document.createElement('p');
+        windEl.textContent = windSpeed;
+        const humidityEl = document.createElement('p');
+        humidityEl.textContent = "Humidity: " + humidity;
+        container.appendChild(dayEl);
+        container.appendChild(tempEl);
+        container.appendChild(windEl);
+        container.appendChild(humidityEl);
+        fivedayforecast.appendChild(container);
+
+
+      }
+    })
+  };
+  
+  // var displayForecast = function (forecast) {
+  //   console.log(forecast);""
+  // }
+  
 
 userFormEl.addEventListener('submit', formSubmitHandler);
