@@ -6,47 +6,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:400,400i,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
   <link rel="stylesheet" href="./assets/style.css" />
   <title>Weather</title>
 </head>
 
-<body class="flex-column min-100-vh">
-  <header class="hero">
-    <h1 class="app-title">Weather</h1>
+<body class="card">
+  <header class="">
+    <h1 class="">Weather</h1>
     <p>Search for City</p>
   </header>
 
 
 
-  <main class="flex-row justify-space-between">
-    <iframe
-    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d304.52107673255756!2d-97.74119202402814!3d30.286582339128955!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8644b577df4246bd%3A0xb7177c1de304f7f6!2sTexas%20Union!5e0!3m2!1sen!2ssg!4v1694692207215!5m2!1sen!2ssg"
-    class="w-full" style="border:0;" allowfullscreen="" loading="lazy"
-    referrerpolicy="no-referrer-when-downgrade">
-    </iframe>
+  <main>
 
-    <div class="col-12 col-md-4">
-
-      <div class="card">
-        <h3 class="card-header text-uppercase">Search By Location</h3>
+      <div class="search-card">
+        <h2>Search By Location</h2>
         <form id="user-form" class="card-body">
           <label class="form-label">City:</label>
-          <input id="city" type="text" autofocus="true" class="form-input" />
+          <input id="city" class="form-input"/>
           <button type="submit" class="btn">Submit</button>
         </form>
       </div>
 
 
-        <div class="card flex-col w-3/4 text-left">
-                    <p class="mb-5">This is the 5-day bar forecast for City</p>
-              <div id="5dayforecast">
+        <div class="forecast">
+                    <p>This is the 5-day bar forecast for City</p>
+              <div id="fivedayforecast">
 
               </div>
       </div>
 
-    <div class="col-12 col-md-8">
-      <h2 class="subtitle">Showing Weather for: <span id="city-search-term"></span></h2>
+    <div class="">
+      <h2 class="">Current Weather: <span id="city-search-term"></span></h2>
       <div id="weather-container" class="list-group"></div>
     </div>
   </main>

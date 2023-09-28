@@ -1,7 +1,14 @@
-.list-group {
-    display: block;
+.card {
+    display: flex;
+    flex-direction: column;
 }
 
-.card {
-    display: block;
+.search-card {
+    text-align: left;
+    line-height: 20px;
 }
+
+.forecast {
+    text-align: center;
+}
+

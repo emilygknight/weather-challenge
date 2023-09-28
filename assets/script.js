@@ -1,3 +1,4 @@
+
 var userFormEl = document.querySelector('#user-form');
 var cityInput = document.querySelector('#city');
 var weatherContainer = document.querySelector('#weather-container');
@@ -5,7 +6,7 @@ var citySearchTerm = document.querySelector('#city-search-term');
 // const apiUrl = 'https://api.openweathermap.org/data/2.5/weather';
 const APIKey = "0d9571e1b0c1a878cfe2800320169226";
 const city = '';
-const fivedayforecast = document.getElementById('5dayforecast');
+const fivedayforecast = document.getElementById('fivedayforecast');
 // dayjs.extend(window.dayjs_plugin_utc);
 // dayjs.extend(window.dayjs_plugin_timezone);
 
