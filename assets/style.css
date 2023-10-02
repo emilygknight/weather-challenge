@@ -3,6 +3,10 @@
     flex-direction: column;
 }
 
+header {
+    text-align: center;
+}
+
 .search-card {
     text-align: left;
     line-height: 20px;
@@ -10,8 +14,13 @@
 
 .forecast {
     text-align: center;
+
 }
+
+#fivedayforecast
 
 .current {
     text-align: center;
+    box-shadow: black 0px 2px 8px 0px;
+    background-color: rgb(183, 212, 246);
 }

@@ -57,15 +57,15 @@ var displayCurrentWeather = function (data, city) {
   citySearchTerm.textContent = city + " " + currentDay;
 
   var tempEl = document.createElement('p');
-  tempEl.textContent = "temp: " + data.main.temp;
+  tempEl.textContent = "Temperature: " + data.main.temp;
   weatherContainer.appendChild(tempEl);
 
   var windEl = document.createElement('p');
-  windEl.textContent = "wind: " + data.wind.speed + " MPH";
+  windEl.textContent = "Wind Speed: " + data.wind.speed + " MPH";
   weatherContainer.appendChild(windEl);
 
   var humidityEl = document.createElement('p');
-  humidityEl.textContent = "humidity: " + data.main.humidity  + " %";
+  humidityEl.textContent = "Humidity: " + data.main.humidity  + " %";
   weatherContainer.appendChild(humidityEl);    
   };
 
@@ -90,11 +90,11 @@ var displayCurrentWeather = function (data, city) {
         // console.log('Temperature:', temperature);
         const container = document.createElement('div');
         const dayEl = document.createElement('p');
-        dayEl.textContent = "date: " + dateTime;
+        dayEl.textContent = "Date: " + dateTime;
         const tempEl = document.createElement('p');
-        tempEl.textContent = temperature;
+        tempEl.textContent = "Temperature: " + temperature;
         const windEl = document.createElement('p');
-        windEl.textContent = windSpeed;
+        windEl.textContent = "Wind Speed: " +windSpeed;
         const humidityEl = document.createElement('p');
         humidityEl.textContent = "Humidity: " + humidity;
         container.appendChild(dayEl);
