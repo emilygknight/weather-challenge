@@ -1,0 +1,43 @@
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    text-align: center;
+    font-family: "Quicksand";
+}
+
+.search-card {
+    text-align: left;
+    line-height: 20px;
+}
+
+.forecast {
+    text-align: center;
+}
+
+
+#fivedayforecast {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    background-color: rgb(183, 212, 246);
+    color: black;
+}
+
+.current-weather {
+    text-align: center;
+    box-shadow: black 0px 2px 8px 0px;
+    background-color: rgb(183, 212, 246);
+    color: black;
+}
+
+.weather-map {
+    text-align: center;
+}
+
+img {
+    width: 50%;
+    height: auto;
+}
